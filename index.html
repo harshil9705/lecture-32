@@ -9,8 +9,9 @@
             font-family: sans-serif;
         }
         form{
-            display: inline-block;
-            margin: auto;
+            margin-top: 10px;
+            display: flex;
+            justify-content: center;
         }
         #ui{
             display: grid;
@@ -38,13 +39,16 @@
 </head>
 <body>
     <form id="form">
-        <input type="url" id="img" placeholder="ImageURL"><br><br>
+        <div>
+            <input type="url" id="img" placeholder="ImageURL"><br><br>
         <input type="text" id="name" placeholder="Enter your Fullname"><br><br>
         <input type="text" id="course" placeholder="Enter Course"><br><br>
         <input type="number" id="grid" placeholder="Enter GRID"><br><br>
         <input type="number" id="number" placeholder="Enter Mobile no."><br><br>
         <input type="submit">
+        </div>
     </form>
+    <br><hr><br>
     <div id="ui"></div>
 </body>
     <script src="index.js"></script>

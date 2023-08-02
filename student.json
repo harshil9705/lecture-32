@@ -1,3 +1,12 @@
 {
-  "student": []
+  "student": [
+    {
+      "img": "https://itknowledgeexchange.techtarget.com/coffee-talk/files/2020/11/find-github-url.png",
+      "name": "harshil",
+      "course": "web frontend devloper",
+      "grid": "2564",
+      "number": "654546546",
+      "id": 1
+    }
+  ]
 }
