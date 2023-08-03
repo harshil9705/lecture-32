@@ -1,3 +1,41 @@
+let id = -1
+
+document.querySelector("#form").addEventListener("submit",(e)=>{
+    e.preventDefault()
+    // POST data
+    let value = document.querySelector("#value").value;
+    console.log(value);
+    
+    data={
+        img:document.querySelector("#img").value,
+        name:document.querySelector("#name").value,
+        course:document.querySelector("#course").value,
+        grid:document.querySelector("#grid").value,
+        number:document.querySelector("#number").value,
+    }
+
+    if(value == "submit"){
+        fetch("http://localhost:8090/student",{
+            method:"POST",
+            headers:{"content-Type":"application/json"},
+            body:JSON.stringify(data)
+        })
+    }
+    else{
+            fetch("http://localhost:8090/student/" + id,{
+                method:"PATCH",
+                headers:{"content-type":"application/json"},
+                body:JSON.stringify(data)
+            })
+            document.querySelector("#img").value = ""
+            document.querySelector("#name").value = ""
+            document.querySelector("#course").value = "" 
+            document.querySelector("#grid").value = ""
+            document.querySelector("#number").value = ""
+            document.querySelector("#value").value = "submit"    
+        }
+
+})
 
 let output = (std) =>{
     document.querySelector("#ui").innerHTML=""
@@ -21,6 +59,15 @@ let output = (std) =>{
 
         let btn2 = document.createElement("button")
         btn2.innerHTML="UPDATE"
+        btn2.addEventListener("click",()=>{
+            document.querySelector("#img").value = ele.img
+            document.querySelector("#name").value = ele.name
+            document.querySelector("#course").value = ele.course 
+            document.querySelector("#grid").value = ele.grid
+            document.querySelector("#number").value = ele.number
+            document.querySelector("#value").value = "update"
+            id=ele.id
+        })
 
         let btndiv = document.createElement("div")
         btndiv.append(btn1,btn2)
@@ -46,24 +93,3 @@ let dlt =async (id) =>{
 fetch("http://localhost:8090/student")
 .then((ser)=>ser.json())
 .then((data)=>output(data))
-
-document.querySelector("#form").addEventListener("submit",(e)=>{
-    e.preventDefault()
-    data={
-        img:document.querySelector("#img").value,
-        name:document.querySelector("#name").value,
-        course:document.querySelector("#course").value,
-        grid:document.querySelector("#grid").value,
-        number:document.querySelector("#number").value,
-    }
-
-    // POST data
-
-    fetch("http://localhost:8090/student",{
-        method:"POST",
-        headers:{"content-Type":"application/json"},
-        body:JSON.stringify(data)
-    })
-    .then((pera)=>pera.json())
-    .then((res)=>console.log(res))
-})
